@@ -9,3 +9,7 @@ After of install globally 'create-react-app', run:
 For this case, We don't need re-create the App.
 
 For try the app, we create the `Table.js` component and Render that.
+
+In the next step, We extend the setup, for that I run:
+
+`npm run eject`
