@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Square.css';
+import './Square.styl';
 
 
 class Table extends Component {

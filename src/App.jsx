@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import Table from './components/Table.js';
+import './App.styl';
+import Table from './components/Table.jsx';
 
 class App extends Component {
   render() {
+    debugger
     return (
       <div className="App">
         <div className="App-header">

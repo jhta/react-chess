@@ -6,7 +6,8 @@ var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var paths = require('./paths');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: "eval-source-map",
+  debug: true,
   entry: [
     require.resolve('webpack-dev-server/client') + '?/',
     require.resolve('webpack/hot/dev-server'),
@@ -21,7 +22,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js', '.json'],
+    extensions: ['', '.js', '.styl', '.jsx', '.svg', '.ttf', '.woff', '.eot', 'woff2'],
     alias: {
       // This `alias` section can be safely removed after ejection.
       // We do this because `babel-runtime` may be inside `react-scripts`,
@@ -41,23 +42,23 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'eslint',
         include: paths.appSrc,
       }
     ],
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: paths.appSrc,
         loader: 'babel',
         query: require('./babel.dev')
       },
-      {
+      /*{
         test: /\.css$/,
         include: [paths.appSrc, paths.appNodeModules],
         loader: 'style!css!postcss'
-      },
+      },*/
       {
         test: /\.json$/,
         include: [paths.appSrc, paths.appNodeModules],
@@ -79,6 +80,11 @@ module.exports = {
           limit: 10000,
           name: 'static/media/[name].[ext]'
         }
+      },
+      {
+        test: /\.styl$/,
+        include: [paths.appSrc, paths.appNodeModules],
+        loader: 'style!css!stylus'
       }
     ]
   },
