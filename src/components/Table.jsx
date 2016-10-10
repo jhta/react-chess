@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './Square.styl';
-
+import Square from './Square.jsx';
+import '../styles/Table.styl';
 
 class Table extends Component {
   /**
@@ -29,13 +29,12 @@ class Table extends Component {
   render() {
     const table = this.getTableMatrix();
     return (
-      <div>
+      <div className="Table">
         {
           table.map( row => row
-                .map((col, index) =>
+                .map(col =>
                   <Square
-                    col={col}
-                    index={index}
+                    isWhite={col}
                     />
                 )
               )
@@ -45,19 +44,5 @@ class Table extends Component {
   }
 }
 
-/**
- * Pure component. In the next step move that to other file
- * @param {Bool} color
- * @param {Number} index
- */
-function Square({col, index}) {
-
-  return (
-    <span className={`Square ${col? '':'black'}`}>
-      {col? "w" : "b"}
-      {index === 7 ? <br/>: null }
-    </span>
-  );
-}
 
 export default Table;
