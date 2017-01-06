@@ -1,0 +1,10 @@
+session_name: React-Chess
+windows:
+  - window_name: running
+    layout: even-horizontal
+    panes:
+      - shell_command:
+        - npm start
+      - shell_command:
+        - atom .
+        focus: true
