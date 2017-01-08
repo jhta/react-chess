@@ -6,16 +6,16 @@ import '../styles/Square.styl';
  * Square in Chess table
  * @param {Bool} isWhite
  */
-function Square({isWhite, index}) {
+function Square({row, column, color, index}) {
   const style = classnames(
     'Square',
     {
-      'black': !isWhite,
+      'black': color === 'black'
     }
   );
   return (
     <div className={style}>
-      {isWhite ? "w" : "b"}
+      {`${row}*${column}`}
     </div>
   );
 }
