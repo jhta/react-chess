@@ -3,7 +3,7 @@
  * @type {Object}
  */
 export const DEFAULT_PIECE = {
-  figure: null,
+  piece: null,
   color: null
 };
 
@@ -12,14 +12,14 @@ export const DEFAULT_PIECE = {
  * @type {Array}
  */
 export const PIECES_WHITE= [
-  'rook_black',
-  'bishop_black',
-  'pawn_black',
-  'king_black',
-  'queen_black',
-  'pawn_black',
-  'bioshop_black',
-  'rook_black'
+  'rook_white',
+  'knight_white',
+  'bishop_white',
+  'queen_white',
+  'king_white',
+  'bishop_white',
+  'knight_white',
+  'rook_white'
 ];
 
 /**
@@ -28,11 +28,11 @@ export const PIECES_WHITE= [
  */
 export const PIECES_BLACK= [
   'rook_black',
+  'knight_black',
   'bishop_black',
-  'pawn_black',
   'king_black',
   'queen_black',
-  'pawn_black',
-  'bioshop_black',
+  'bishop_black',
+  'knight_black',
   'rook_black'
 ];

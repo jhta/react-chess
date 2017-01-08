@@ -5,7 +5,14 @@
   height $SQUARE_SIZE
   color black
   background white
+  font-size 2.5rem
+  line-height 0
+  position relative
+  box-sizing border-box
 
-.black
-  background black
-  color white
+  &.is-black
+    background #aaa
+
+  &:hover
+    border 3px solid lime
+    cursor pointer

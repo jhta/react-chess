@@ -14,9 +14,9 @@ class Table extends Component {
       <div className="Table">
         {
           defaultTable.map( (row, i) => row
-            .map((col, j) =>
+            .map((square, j) =>
               <Square
-                {...col}
+                {...square}
                 column={j + 1}
                 row={i + 1}
                 key={`${i}${j}`}

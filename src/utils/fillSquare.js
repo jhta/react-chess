@@ -27,30 +27,30 @@ export default (row = [], rowNumber = -1) => {
   switch (rowNumber) {
     case 0:
       return row.map((square, columnNumber) => ({
-        figure: PIECES_BLACK[columnNumber],
+        piece: PIECES_BLACK[columnNumber],
         color: getColor(rowNumber, columnNumber)
       }));
 
     case 7:
       return row.map((square, columnNumber) => ({
-        figure: PIECES_WHITE[columnNumber],
+        piece: PIECES_WHITE[columnNumber],
         color: getColor(rowNumber, columnNumber)
       }));
 
     case 1:
       return row.map((square, columnNumber) => ({
-        figure: 'knight_black',
+        piece: 'pawn_black',
         color: getColor(rowNumber, columnNumber)
       }));
 
     case 6:
       return row.map((square, columnNumber) => ({
-        figure: 'knight_white',
+        piece: 'pawn_white',
         color: getColor(rowNumber, columnNumber)
       }));
     default:
-    return row.map((square, columnNumber) => ({
-      color: getColor(rowNumber, columnNumber)
-    }));
+      return row.map((square, columnNumber) => ({
+        color: getColor(rowNumber, columnNumber)
+      }));
   }
 };

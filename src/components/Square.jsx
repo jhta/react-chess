@@ -1,21 +1,25 @@
+import '../styles/Square.styl';
 import React from 'react';
 import classnames from 'classnames';
-import '../styles/Square.styl';
+import getPiece from '../utils/getPiece';
+
 
 /**
  * Square in Chess table
  * @param {Bool} isWhite
  */
-function Square({row, column, color, index}) {
+function Square({row, column, color, index, piece}) {
+  const iconPiece = piece ? getPiece(piece) : null;
+  const text = (iconPiece && iconPiece.htmlCode) ? iconPiece.htmlCode : '';
   const style = classnames(
     'Square',
     {
-      'black': color === 'black'
+      'is-black': color === 'black'
     }
   );
   return (
     <div className={style}>
-      {`${row}*${column}`}
+      <p dangerouslySetInnerHTML={{__html: text }}/>
     </div>
   );
 }
