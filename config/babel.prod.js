@@ -3,11 +3,14 @@ module.exports = {
   presets: [
     'babel-preset-es2015',
     'babel-preset-es2016',
+    'babel-preset-stage-0',
     'babel-preset-react'
   ].map(require.resolve),
   plugins: [
     'babel-plugin-syntax-trailing-function-commas',
+    'babel-plugin-transform-decorators',
     'babel-plugin-transform-class-properties',
+    'babel-plugin-transform-decorators-legacy',
     'babel-plugin-transform-object-rest-spread',
     'babel-plugin-transform-react-constant-elements',
   ].map(require.resolve).concat([

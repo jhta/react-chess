@@ -13,9 +13,12 @@ import PawnWhite from './pieces/PawnWhite';
 import BishopWhite from './pieces/BishopWhite';
 
 
-
+/**
+ * Method for get data of any piece
+ * @param  {String} pieceName
+ * @return {Object}           Piece
+ */
 export default (pieceName) => {
-  debugger
   switch (pieceName) {
     case 'rook_black':
       return RookBlack;
