@@ -2,9 +2,10 @@
  * Default piece object
  * @type {Object}
  */
-export const DEFAULT_PIECE = {
+export const DEFAULT_SQUARE = {
   piece: null,
-  color: null
+  color: null,
+  avalible: false,
 };
 
 /**

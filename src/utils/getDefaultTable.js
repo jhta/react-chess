@@ -1,16 +1,15 @@
-import fillSquare from './fillSquare';
-import { DEFAULT_PIECE } from '../constants/pieces';
+import fillRow from './fillRow';
+import { DEFAULT_SQUARE } from '../constants/pieces';
 
 /**
  * Default array 8*8 filled
  * @param {Array}
  */
-const table = new Array(8)
+const defaultTable = new Array(8)
   .fill(
     new Array(8)
-      .fill(DEFAULT_PIECE)
+      .fill(DEFAULT_SQUARE)
   )
-  .map(fillSquare)
+  .map(fillRow)
 
-
-export default table;
+export default defaultTable;

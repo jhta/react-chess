@@ -1,7 +1,8 @@
 import '../styles/Table.styl';
 import React, { Component } from 'react';
 import Square from './Square.jsx';
-import defaultTable  from '../utils/getDefaultTable';
+import getPiece from '../utils/getPiece';
+
 
 class Table extends Component {
 
@@ -10,15 +11,18 @@ class Table extends Component {
    * @return {Component}
    */
   render() {
+    const { table } = this.props;
     return (
       <div className="Table">
         {
-          defaultTable.map( (row, i) => row
+          table.map( (row, i) => row
             .map((square, j) =>
               <Square
                 {...square}
-                column={j + 1}
-                row={i + 1}
+                dispatch={this.props.dispatch}
+                piece={getPiece(square.piece)}
+                column={j}
+                row={i}
                 key={`${i}${j}`}
               />
             )

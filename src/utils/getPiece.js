@@ -12,7 +12,6 @@ import KingWhite from './pieces/KingWhite';
 import PawnWhite from './pieces/PawnWhite';
 import BishopWhite from './pieces/BishopWhite';
 
-
 /**
  * Method for get data of any piece
  * @param  {String} pieceName
@@ -45,6 +44,6 @@ export default (pieceName) => {
     case 'knight_white':
       return KnightWhite;
     default:
-      return null;
+      return {};
   }
 }
