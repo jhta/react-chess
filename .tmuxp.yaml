@@ -7,4 +7,5 @@ windows:
         - npm start
       - shell_command:
         - atom .
+        - git status
         focus: true
