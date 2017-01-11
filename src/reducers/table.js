@@ -1,15 +1,20 @@
 import defaultTable from '../utils/getDefaultTable';
+import getMovement from '../utils/getMovement';
+import { fromJS } from 'immutable';
 
-function table(state = defaultTable, { type, payload }) {
+function table(state = fromJS(defaultTable), { type, payload }) {
   switch (type) {
     case 'CALCULATE_MOVEMENTS':
-      debugger
-      const { positionX, positionY } = payload;
-      if (!positionX || !positionY) return state;
-      const newState = state;
-      newState[positionX + 1][positionY + 1].avalible = true;
-      newState[positionX - 1][positionY + 1].avalible = true;
-      return newState;
+      return getMovement(payload, state);
+    case 'CANCEL_MOVEMENT':
+
+      return state
+        .map(row => row
+          .map(square => square
+            .set('avalible', false)
+          )
+        )
+
     default:
       return state;
   }

@@ -1,7 +1,6 @@
 import '../styles/Table.styl';
 import React, { Component } from 'react';
 import Square from './Square.jsx';
-import getPiece from '../utils/getPiece';
 
 
 class Table extends Component {
@@ -20,7 +19,6 @@ class Table extends Component {
               <Square
                 {...square}
                 dispatch={this.props.dispatch}
-                piece={getPiece(square.piece)}
                 column={j}
                 row={i}
                 key={`${i}${j}`}

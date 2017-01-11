@@ -31,15 +31,22 @@ class Square extends Component {
 
   @autobind
   handleClick(event) {
-    const { dispatch, column, row } = this.props;
     event.preventDefault();
-    dispatch({
-      type: 'CALCULATE_MOVEMENTS',
-      payload: {
-        positionX: row,
-        positionY: column,
-      }
-    });
+    const { dispatch, column, row, piece } = this.props;
+    if (piece) {
+      dispatch({
+        type: 'CALCULATE_MOVEMENTS',
+        payload: {
+          positionX: row,
+          positionY: column,
+          piece: piece
+        }
+      });
+    } else {
+      dispatch({
+        type: 'CANCEL_MOVEMENT',
+      })
+    }
   }
 
   render() {

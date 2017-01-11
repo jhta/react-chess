@@ -2,6 +2,7 @@ import  {
   PIECES_BLACK,
   PIECES_WHITE,
 } from '../constants/pieces';
+import getPiece from './getPiece';
 
 /**
  * return color square
@@ -18,7 +19,7 @@ const fillSquare = (i, j, pieceName, square) => Object
     {},
     square,
     {
-      piece: pieceName,
+      piece: pieceName? getPiece(pieceName) : null,
       color: getColor(i, j),
     }
 );
