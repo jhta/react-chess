@@ -20,14 +20,12 @@ function getPownMovements(i, j, piece, table) {
     new Movement({
       moveX: i - 1,
       moveY: j - 1,
-      canKill: true,
+      justKill: true,
     }).toJS(),
     new Movement({
       moveX: i - 1,
       moveY: j + 1,
-      canKill: true,
-      condition: true,
-      killerMovement: true,
+      justKill: true,
     }).toJS()
   ];
 

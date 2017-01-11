@@ -7,19 +7,18 @@ export default (table, moves, piece) => moves
     const {
       moveX,
       moveY,
-      canKill,
+      justKill,
     } = currentMove;
 
     if (!validateRange(moveX, moveY)) return acumTable;
     if (!currentMove.condition) return acumTable;
-
     const square = acumTable.get(moveX).get(moveY);
     return switchAvalibleSquare(
       moveX,
       moveY,
       acumTable,
       square,
-      canKill,
+      justKill,
       piece,
     );
 

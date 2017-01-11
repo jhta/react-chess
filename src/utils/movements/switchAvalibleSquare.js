@@ -4,7 +4,6 @@ function hasPiece(square) {
   }
 
 function hasDifferentColor(color, square) {
-  debugger
   return square.get('piece').get('color') !== color;
 }
 
@@ -21,18 +20,24 @@ function getArrangedTable(i, j, table, square) {
     )
 }
 
-function switchAvalibleSquare(i, j, table, square, canKill, piece) {
+function switchAvalibleSquare(i, j, table, square, justKill, piece) {
   if (!hasPiece(square)) {
-    if (canKill) return table;
+    if (justKill) return table;
+    debugger
     return getArrangedTable(i, j, table, square);
   }
 
-  if (canKill) {
+  if (justKill) {
     if (hasDifferentColor(piece.get('color'), square)) {
       return getArrangedTable(i, j, table, square);
     }
     return table;
   }
+
+  if (hasDifferentColor(piece.get('color'), square)) {
+    return getArrangedTable(i, j, table, square);
+  }
+
   return table;
 }
 

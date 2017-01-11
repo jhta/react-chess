@@ -3,6 +3,6 @@ import { Record } from 'immutable';
 export default Record({
   moveX: undefined,
   moveY: undefined,
-  canKill: false,
+  justKill: false,
   condition: true,
 });
