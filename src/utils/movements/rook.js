@@ -3,6 +3,19 @@ import reduceMovements from './reduceMovements';
 
 function getPownMovements(posX, posY, piece, table) {
 
+  const wayIsBlocked = {
+    top: false,
+    bottom: false,
+    left: false,
+    right: false,
+  };
+
+  /*const arrayLeft = new Array((0 - posX)).fill(0);
+  function addMovement(array, table, direction) {
+    if (direction === 'left') {
+
+    }
+  } */
 
   const horizontalMoves = new Array(8).fill(0)
     .map((val, i) => {
@@ -16,11 +29,8 @@ function getPownMovements(posX, posY, piece, table) {
 
   const verticalMoves = new Array(8).fill(0)
     .map((val, j) => {
-      debugger
       if (j !== posY) {
-        debugger
         return {
-
           moveX: posX,
           moveY: j,
         }

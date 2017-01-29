@@ -4,23 +4,17 @@ import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import { createStore } from 'redux';
 import tableReducer from './reducers/table';
-//import { fromJS } from 'immutable';
-
-console.log(tableReducer);
+import { Provider } from 'react-redux';
 
 let tableStore = createStore(tableReducer);
 
-//console.log(fromJS(tableStore.getState()).toJS());
-
 const render = () => {
   ReactDOM.render(
-    <App
-      table={tableStore.getState().toJS()}
-      dispatch={tableStore.dispatch}
-       />,
+    <Provider store={tableStore}>
+      <App />
+     </Provider>,
     document.getElementById('root')
   );
-
 }
 
 tableStore.subscribe(render);
