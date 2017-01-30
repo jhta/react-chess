@@ -10,7 +10,18 @@ export const calculateMovements = (row, column, piece) => {
     payload: {
       positionX: row,
       positionY: column,
-        piece: piece
-      }
+      piece: piece
     }
+  }
+};
+
+
+export const move = (row, column) => {
+  return {
+    type: 'MOVE',
+    payload: {
+      positionX: row,
+      positionY: column,
+    }
+  }
 };
