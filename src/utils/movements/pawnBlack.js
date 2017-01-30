@@ -7,14 +7,17 @@ function getPownMovements(i, j, piece, table) {
     moveY: j,
   }).toJS();
 
-  const initialMove = new Movement({
-    moveX: i + 2,
-    moveY: j,
-    condition: piece ?
-     piece.get('firstMovement')
-     :
-     false,
-  }).toJS();
+  let initialMove = {};
+  if (i === 1) {
+    initialMove = new Movement({
+      moveX: i + 2,
+      moveY: j,
+      condition: piece ?
+       piece.get('firstMovement')
+       :
+       false,
+    }).toJS();
+  }
 
   const killMoves = [
     new Movement({
