@@ -10,7 +10,7 @@ class Table extends Component {
    * @return {Component}
    */
   render() {
-    const { table, calculate, cancel } = this.props;
+    const { table } = this.props;
     return (
       <div className="Table">
         {
@@ -18,8 +18,7 @@ class Table extends Component {
             .map((square, j) =>
               <Square
                 {...square}
-                calculate={calculate}
-                cancel={cancel}
+                {...this.props}
                 column={j}
                 row={i}
                 key={`${i}${j}`}

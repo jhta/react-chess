@@ -32,11 +32,12 @@ class Square extends Component {
   @autobind
   handleClick(event) {
     event.preventDefault();
-    const { calculate, cancel, column, row, piece } = this.props;
-    if (piece) {
-      calculate(row, column, piece);
+    const { calculate, cancel, column, row, isMoving, turn, piece, avalible, move } = this.props;
+    if (!isMoving) {
+      if (piece && piece.color === turn) calculate(row, column, piece);
     } else {
-      cancel();
+      if ((!piece && avalible) || (piece && piece.color !== turn)) move(row, column);
+      else cancel();
     }
   }
 
