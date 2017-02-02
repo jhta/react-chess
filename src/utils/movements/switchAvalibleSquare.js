@@ -23,7 +23,6 @@ function getArrangedTable(i, j, table, square) {
 function switchAvalibleSquare(i, j, table, square, justKill, piece) {
   if (!hasPiece(square)) {
     if (justKill) return table;
-    debugger
     return getArrangedTable(i, j, table, square);
   }
 

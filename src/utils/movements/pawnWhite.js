@@ -8,7 +8,7 @@ function getPownMovements(i, j, piece, table) {
   }).toJS();
 
   let initialMove = {};
-  if (i === 1) {
+  if (i === 6) {
     initialMove = new Movement({
       moveX: i - 2,
       moveY: j,

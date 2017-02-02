@@ -35,13 +35,21 @@ function getMovement({piece, positionX, positionY}, table) {
         table
       );
     case 'rook_black':
-      debugger
       return getRookMovements(
         positionX,
         positionY,
         fromJS(piece),
         table
       );
+
+    case 'rook_white':
+      return getRookMovements(
+        positionX,
+        positionY,
+        fromJS(piece),
+        table
+      );
+
 
     default:
     return table;

@@ -3,42 +3,103 @@ import reduceMovements from './reduceMovements';
 
 function getPownMovements(posX, posY, piece, table) {
 
-  const wayIsBlocked = {
-    top: false,
-    bottom: false,
-    left: false,
-    right: false,
-  };
-
-  /*const arrayLeft = new Array((0 - posX)).fill(0);
-  function addMovement(array, table, direction) {
-    if (direction === 'left') {
-
-    }
-  } */
-
-  const horizontalMoves = new Array(8).fill(0)
-    .map((val, i) => {
-      if (i !== posX) {
-        return {
+  let topMoves = [];
+  let i = 0;
+  for (i = posX - 1; i>= 0; i--) {
+    if (i < 0) break;
+    if (table.get(i).get(posY).get('piece')) {
+    //  debugger
+      const auxPiece = table.get(i).get(posY).get('piece').toJS();
+      if (auxPiece.color === piece.get('color')) {
+        break;
+      } else {
+        topMoves.push({
           moveX: i,
           moveY: posY,
-        }
+        });
+        break;
       }
-  });
+    }
+    topMoves.push({
+      moveX: i,
+      moveY: posY
+    });
+  }
 
-  const verticalMoves = new Array(8).fill(0)
-    .map((val, j) => {
-      if (j !== posY) {
-        return {
+
+
+  let bottomMoves = [];
+
+  for (i = posX + 1; i <= 7; i++) {
+    if (i > 7) break;
+    if (table.get(i).get(posY).get('piece')) {
+      let auxPiece = table.get(i).get(posY).get('piece').toJS();
+      if (auxPiece.color === piece.get('color')) {
+        break;
+      } else {
+        bottomMoves.push({
+          moveX: i,
+          moveY: posY,
+        });
+        break;
+      }
+    }
+    bottomMoves.push({
+      moveX: i,
+      moveY: posY
+    });
+  }
+
+
+
+  let leftMoves = [];
+
+  for (i = posY - 1; i >= 0; i--) {
+    if (i < 0) break;
+    if (table.get(posX).get(i).get('piece')) {
+      let auxPiece = table.get(posX).get(i).get('piece').toJS();
+      if (auxPiece.color === piece.get('color')) {
+        break;
+      } else {
+        leftMoves.push({
           moveX: posX,
-          moveY: j,
-        }
+          moveY: i,
+        });
+        break;
       }
-  });
+    }
+    leftMoves.push({
+      moveX: posX,
+      moveY: i,
+    });
+  }
 
 
-  const moves = [...verticalMoves, ...horizontalMoves]
+  let rightMoves = [];
+
+  for (i = posY + 1; i <= 7; i++) {
+    if (i > 7) break;
+    if (table.get(posX).get(i).get('piece')) {
+      let auxPiece = table.get(posX).get(i).get('piece').toJS();
+      if (auxPiece.color === piece.get('color')) {
+        break;
+      } else {
+        rightMoves.push({
+          moveX: posX,
+          moveY: i,
+        });
+        break;
+      }
+    }
+    rightMoves.push({
+      moveX: posX,
+      moveY: i
+    });
+  }
+
+
+
+  const moves = [...leftMoves, ...rightMoves, ...topMoves, ...bottomMoves]
     .map((move) => new Movement(move)
     .toJS()
   );
