@@ -39,6 +39,7 @@
     "html-webpack-plugin": "2.22.0",
     "immutable": "^3.8.1",
     "json-loader": "0.5.4",
+    "lodash": "^4.17.4",
     "opn": "4.0.2",
     "postcss-loader": "0.9.1",
     "promise": "7.1.1",

@@ -66,7 +66,7 @@ const cancelMovement = (state) => {
   }));
 };
 
-function table(state = fromJS(defaultState), { type, payload }) {
+function table(state = defaultState, { type, payload }) {
   switch (type) {
 
     case 'CALCULATE_MOVEMENTS':

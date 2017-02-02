@@ -1,16 +1,10 @@
 import './index.styl';
 import React from 'react';
 import { render } from 'react-dom';
-import App from './App.jsx';
-import { createStore } from 'redux';
-import tableReducer from './reducers/table';
-import { Provider } from 'react-redux';
-
-let tableStore = createStore(tableReducer);
+import Root from './Root.jsx';
+import configStore from './configStore';
 
 render(
-  <Provider store={tableStore}>
-    <App />
-   </Provider>,
+  <Root store={configStore()} />,
   document.getElementById('root')
 );
