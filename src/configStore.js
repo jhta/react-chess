@@ -1,8 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import tableReducer from './reducers/table';
+import createLogger from 'redux-logger';
 import throttle from 'lodash/throttle';
 import { fromJS } from 'immutable';
 
+
+const logger = createLogger();
 const congifStore = () => {
   const saveState = (state) => {
     localStorage.setItem('state', JSON.stringify(state));
@@ -17,9 +20,9 @@ const congifStore = () => {
   }
 
   let store = loadState() ?
-    createStore(tableReducer, fromJS(loadState()))
+    createStore(tableReducer, fromJS(loadState()), applyMiddleware(logger))
     :
-    createStore(tableReducer)
+    createStore(tableReducer, applyMiddleware(logger))
 
   store.subscribe(
     throttle(() => {
