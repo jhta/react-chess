@@ -29,14 +29,22 @@ class Square extends Component {
     );
   }
 
+  get hasSameColor() {
+    const { piece, turn } = this.props;
+    if (!piece) return false;
+    return piece.color === turn;
+  }
+
   @autobind
   handleClick(event) {
     event.preventDefault();
-    const { calculate, cancel, column, row, isMoving, turn, piece, avalible, move } = this.props;
+    // Actions
+    const { calculate, cancel, move } = this.props;
+    const { column, row, isMoving, piece, avalible } = this.props;
     if (!isMoving) {
-      if (piece && piece.color === turn) calculate(row, column, piece);
+      if (this.hasSameColor) calculate(row, column, piece);
     } else {
-      if ((!piece && avalible) || (piece && piece.color !== turn)) move(row, column);
+      if ((!piece && avalible) || !this.hasSameColor) move(row, column);
       else cancel();
     }
   }

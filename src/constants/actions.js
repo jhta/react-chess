@@ -1,0 +1,3 @@
+export const MOVE = 'MOVE';
+export const CANCEL_MOVEMENT = "CANCEL_MOVEMENT";
+export const CALCULATE_MOVEMENTS = "CALCULATE_MOVEMENTS";
