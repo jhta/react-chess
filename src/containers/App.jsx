@@ -8,28 +8,24 @@ import {
   move
 } from '../actions';
 
-const mapStateToProps = (state) => {
-  debugger
-  return {
-
+const mapStateToProps = (state) => ({
   table: state.get('table').toJS(),
   isMoving: state.get('isMoving'),
   turn: state.get('turn'),
   pieceInMove: state.get('pieceInMove').name,
   pieceInMoveX: state.get('pieceInMoveX') + 1,
   pieceInMoveY: state.get('pieceInMoveY') + 1,
-}
-};
+});
 
 const mapDispatchToProps = (dispatch) => ({
   cancel() {
     dispatch(cancelMovement())
   },
-  calculate(row, column, piece) {
-    dispatch(calculateMovements(row, column, piece))
+  calculate(positionX, positionY, piece) {
+    dispatch(calculateMovements({positionX, positionY, piece}))
   },
-  move(row, column) {
-    dispatch(move(row, column))
+  move(positionX, positionY) {
+    dispatch(move({positionX, positionY}))
   }
 });
 
