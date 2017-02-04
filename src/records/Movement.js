@@ -1,6 +1,6 @@
-import { Record } from 'immutable';
+import { Record as record } from 'immutable';
 
-export default Record({
+export default record({
   moveX: undefined,
   moveY: undefined,
   justKill: false,
