@@ -1,100 +1,84 @@
 import Movement from '../../records/Movement';
 import reduceMovements from './reduceMovements';
 
-function getPownMovements(posX, posY, piece, table) {
+function addMove(table, piece, row, column) {
+  if (row < 0 || row > 7) return false;
+  if (column < 0 || column > 7) return false;
+
+  const auxPiece = table.get(row).get(column).get('piece');
+  if (auxPiece) {
+    if (auxPiece.color === piece.get('color')) return false;
+    return {
+      move: {
+        moveX: row,
+        moveY: column,
+      },
+      break: true
+    };
+  }
+
+  return {
+    move: {
+      moveX: row,
+      moveY: column
+    },
+    break: false,
+  };
+
+
+}
+
+function getRookMovements({ positionX: posX, positionY: posY, piece, table }) {
 
   let topMoves = [];
   let i = 0;
   for (i = posX - 1; i>= 0; i--) {
-    if (i < 0) break;
-    if (table.get(i).get(posY).get('piece')) {
-    //  debugger
-      const auxPiece = table.get(i).get(posY).get('piece').toJS();
-      if (auxPiece.color === piece.get('color')) {
-        break;
-      } else {
-        topMoves.push({
-          moveX: i,
-          moveY: posY,
-        });
-        break;
-      }
+    const move = addMove(table, piece, i, posY);
+    if (!move) break;
+    if (move.break) {
+      topMoves.push(move.move);
+      break;
     }
-    topMoves.push({
-      moveX: i,
-      moveY: posY
-    });
+    topMoves.push(move.move);
   }
-
-
 
   let bottomMoves = [];
 
   for (i = posX + 1; i <= 7; i++) {
-    if (i > 7) break;
-    if (table.get(i).get(posY).get('piece')) {
-      let auxPiece = table.get(i).get(posY).get('piece').toJS();
-      if (auxPiece.color === piece.get('color')) {
-        break;
-      } else {
-        bottomMoves.push({
-          moveX: i,
-          moveY: posY,
-        });
-        break;
-      }
+    const move = addMove(table, piece, i, posY);
+    if (!move) break;
+    if (move.break) {
+      bottomMoves.push(move.move);
+      break;
     }
-    bottomMoves.push({
-      moveX: i,
-      moveY: posY
-    });
+    bottomMoves.push(move.move);
   }
-
 
 
   let leftMoves = [];
 
   for (i = posY - 1; i >= 0; i--) {
-    if (i < 0) break;
-    if (table.get(posX).get(i).get('piece')) {
-      let auxPiece = table.get(posX).get(i).get('piece').toJS();
-      if (auxPiece.color === piece.get('color')) {
-        break;
-      } else {
-        leftMoves.push({
-          moveX: posX,
-          moveY: i,
-        });
-        break;
-      }
+    const move = addMove(table, piece, posX, i);
+    if (!move) break;
+    if (move.break) {
+      leftMoves.push(move.move);
+      break;
     }
-    leftMoves.push({
-      moveX: posX,
-      moveY: i,
-    });
+    leftMoves.push(move.move);
   }
 
 
   let rightMoves = [];
 
   for (i = posY + 1; i <= 7; i++) {
-    if (i > 7) break;
-    if (table.get(posX).get(i).get('piece')) {
-      let auxPiece = table.get(posX).get(i).get('piece').toJS();
-      if (auxPiece.color === piece.get('color')) {
-        break;
-      } else {
-        rightMoves.push({
-          moveX: posX,
-          moveY: i,
-        });
-        break;
-      }
+
+    const move = addMove(table, piece, posX, i);
+    if (!move) break;
+    if (move.break) {
+      rightMoves.push(move.move);
+      break;
     }
-    rightMoves.push({
-      moveX: posX,
-      moveY: i
-    });
+    rightMoves.push(move.move);
   }
 
 
@@ -106,6 +90,4 @@ function getPownMovements(posX, posY, piece, table) {
   return reduceMovements(table, moves, piece);
 }
 
-export default (i, j, piece, table) => {
-  return getPownMovements(i, j, piece, table);
-}
+export default (data) => getRookMovements(data);

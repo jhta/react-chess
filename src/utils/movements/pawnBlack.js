@@ -1,7 +1,8 @@
 import Movement from '../../records/Movement';
 import reduceMovements from './reduceMovements';
 
-function getPownMovements(i, j, piece, table) {
+function getPownMovements({ positionX: i, positionY: j, piece, table }) {
+
   const frontMove = new Movement({
     moveX: i + 1,
     moveY: j,
@@ -20,11 +21,13 @@ function getPownMovements(i, j, piece, table) {
   }
 
   const killMoves = [
+
     new Movement({
       moveX: i + 1,
       moveY: j - 1,
       justKill: true,
     }).toJS(),
+
     new Movement({
       moveX: i + 1,
       moveY: j + 1,
@@ -32,12 +35,11 @@ function getPownMovements(i, j, piece, table) {
       killerMovement: true,
       justKill: true,
     }).toJS()
+
   ];
 
   const moves = [frontMove, initialMove, ...killMoves];
   return reduceMovements(table, moves, piece);
 }
 
-export default (i, j, piece, table) => {
-  return getPownMovements(i, j, piece, table);
-}
+export default (data) => getPownMovements(data);

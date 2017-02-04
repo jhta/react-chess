@@ -2,54 +2,42 @@ import getPawnBlackMovements from './movements/pawnBlack';
 import getPawnWhiteMovements from './movements/pawnWhite';
 import getKnightMovements from './movements/knight';
 import getRookMovements from './movements/rook';
+import getBishopMovements from './movements/bishop';
 import { fromJS } from 'immutable';
 
 function getMovement({piece, positionX, positionY}, table) {
+
+  const data = {
+    positionX,
+    positionY,
+    piece: fromJS(piece),
+    table
+  };
+
   switch (piece.name) {
     case 'pawn_black':
-      return getPawnBlackMovements(
-        positionX,
-        positionY,
-        fromJS(piece),
-        table
-      );
+      return getPawnBlackMovements(data);
+
     case 'pawn_white':
-      return getPawnWhiteMovements(
-        positionX,
-        positionY,
-        fromJS(piece),
-        table
-      );
+      return getPawnWhiteMovements(data);
+
     case 'knight_black':
-      return getKnightMovements(
-        positionX,
-        positionY,
-        fromJS(piece),
-        table
-      );
+      return getKnightMovements(data);
+
     case 'knight_white':
-      return getKnightMovements(
-        positionX,
-        positionY,
-        fromJS(piece),
-        table
-      );
+      return getKnightMovements(data);
+
     case 'rook_black':
-      return getRookMovements(
-        positionX,
-        positionY,
-        fromJS(piece),
-        table
-      );
+      return getRookMovements(data);
 
     case 'rook_white':
-      return getRookMovements(
-        positionX,
-        positionY,
-        fromJS(piece),
-        table
-      );
+      return getRookMovements(data);
 
+    case 'bishop_white':
+      return getBishopMovements(data);
+
+    case 'bishop_black':
+      return getBishopMovements(data);
 
     default:
     return table;

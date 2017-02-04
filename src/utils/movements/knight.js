@@ -1,43 +1,31 @@
 import Movement from '../../records/Movement';
 import reduceMovements from './reduceMovements';
 
-function getPownMovements(i, j, piece, table) {
+/**
+ * get the avalible movments for Knigth piece
+ * @param  {Number} posX  vertical positon in table
+ * @param  {Number} posY  horizontal position in table
+ * @param  {Object} piece Actual piece
+ * @param  {List} table immutable List
+ * @return {List}       table with the new avalible positions
+ */
+function getKnightMovements({ positionX: posX, positionY: posY, piece, table }) {
 
-  const crudeMoves = [
-    {
-      moveX: i - 1,
-      moveY: j + 2,
-    },
-    {
-      moveX: i - 1,
-      moveY: j - 2,
-    },
-    {
-      moveX: i + 1,
-      moveY: j - 2,
-    },
-    {
-      moveX: i + 1,
-      moveY: j + 2,
-    },
-    {
-      moveX: i - 2,
-      moveY: j + 1,
-    },
-    {
-      moveX: i - 2,
-      moveY: j - 1,
-    },
-    {
-      moveX: i + 2,
-      moveY: j + 1,
-    },
-    {
-      moveX: i + 2,
-      moveY: j - 1,
-    },
+  const crudeMoves = [];
 
-  ];
+  for (let i = -2; i <= 2; i++) {
+    if (i === 0) continue;
+    const j = 3 - Math.abs(i);
+    crudeMoves.push({
+      moveX: posX + i,
+      moveY: posY + j,
+    });
+
+    crudeMoves.push({
+      moveX: posX + i,
+      moveY: posY - j,
+    });
+  }
 
   const moves = crudeMoves
     .map((move) => new Movement(move)
@@ -46,6 +34,4 @@ function getPownMovements(i, j, piece, table) {
   return reduceMovements(table, moves, piece);
 }
 
-export default (i, j, piece, table) => {
-  return getPownMovements(i, j, piece, table);
-}
+export default (data) => getKnightMovements(data);
