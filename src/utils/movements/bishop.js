@@ -1,34 +1,9 @@
 import Movement from '../../records/Movement';
 import reduceMovements from './reduceMovements';
-
-function addMove(table, piece, row, column) {
-  if (row < 0 || row > 7) return false;
-  if (column < 0 || column > 7) return false;
-
-  const auxPiece = table.get(row).get(column).get('piece');
-  if (auxPiece) {
-    if (auxPiece.color === piece.get('color')) return false;
-    return {
-      move: {
-        moveX: row,
-        moveY: column,
-      },
-      break: true
-    };
-  }
-
-  return {
-    move: {
-      moveX: row,
-      moveY: column
-    },
-    break: false,
-  };
+import isAPosibleMovement from './isAPosibleMovement';
 
 
-}
-
-function getPownMovements({ positionX: posX, positionY: posY, piece, table }) {
+function getBishopMovements({ positionX: posX, positionY: posY, piece, table }) {
 
   let topLeftMoves = [];
   let i = posX;
@@ -37,7 +12,7 @@ function getPownMovements({ positionX: posX, positionY: posY, piece, table }) {
   while(true) {
     i--;
     j--;
-    const move = addMove(table, piece, i, j);
+    const move = isAPosibleMovement(table, piece, i, j);
     if (!move) break;
     if (move.break) {
       topLeftMoves.push(move.move);
@@ -54,7 +29,7 @@ function getPownMovements({ positionX: posX, positionY: posY, piece, table }) {
   while(true) {
     i--;
     j++;
-    const move = addMove(table, piece, i, j);
+    const move = isAPosibleMovement(table, piece, i, j);
     if (!move) break;
     if (move.break) {
       topRightMoves.push(move.move);
@@ -70,7 +45,7 @@ function getPownMovements({ positionX: posX, positionY: posY, piece, table }) {
   while(true) {
     i++;
     j--;
-    const move = addMove(table, piece, i, j);
+    const move = isAPosibleMovement(table, piece, i, j);
     if (!move) break;
     if (move.break) {
       bottomLeftMoves.push(move.move);
@@ -87,7 +62,7 @@ function getPownMovements({ positionX: posX, positionY: posY, piece, table }) {
   while(true) {
     i++;
     j++;
-    const move = addMove(table, piece, i, j);
+    const move = isAPosibleMovement(table, piece, i, j);
     if (!move) break;
     if (move.break) {
       bottomRightMoves.push(move.move);
@@ -105,4 +80,4 @@ function getPownMovements({ positionX: posX, positionY: posY, piece, table }) {
   return reduceMovements(table, moves, piece);
 }
 
-export default (data) => getPownMovements(data);
+export default (data) => getBishopMovements(data);

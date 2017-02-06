@@ -3,8 +3,17 @@ import getPawnWhiteMovements from './movements/pawnWhite';
 import getKnightMovements from './movements/knight';
 import getRookMovements from './movements/rook';
 import getBishopMovements from './movements/bishop';
+import getQueenMovements from './movements/queen';
 import { fromJS } from 'immutable';
 
+/**
+ * switch for select the posible movements options for the piece
+ * @param  {Object} piece
+ * @param  {Number} positionX  row
+ * @param  {Number} positionY  column
+ * @param  {Object} table      immutable table object
+ * @return {Object}            table with avalibles movements
+ */
 function getMovement({piece, positionX, positionY}, table) {
 
   const data = {
@@ -38,6 +47,12 @@ function getMovement({piece, positionX, positionY}, table) {
 
     case 'bishop_black':
       return getBishopMovements(data);
+
+    case 'queen_black':
+      return getQueenMovements(data);
+
+    case 'queen_white':
+      return getQueenMovements(data);
 
     default:
     return table;
