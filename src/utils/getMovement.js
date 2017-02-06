@@ -4,6 +4,7 @@ import getKnightMovements from './movements/knight';
 import getRookMovements from './movements/rook';
 import getBishopMovements from './movements/bishop';
 import getQueenMovements from './movements/queen';
+import getKingMovements from './movements/king';
 import { fromJS } from 'immutable';
 
 /**
@@ -53,6 +54,12 @@ function getMovement({piece, positionX, positionY}, table) {
 
     case 'queen_white':
       return getQueenMovements(data);
+
+    case 'king_black':
+      return getKingMovements(data);
+
+    case 'king_white':
+      return getKingMovements(data);
 
     default:
     return table;
